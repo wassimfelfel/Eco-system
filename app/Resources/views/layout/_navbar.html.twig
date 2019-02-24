@@ -1,0 +1,95 @@
+<nav class="mainmenu_wrapper">
+    <ul class="mainmenu nav sf-menu">
+        <li class="active">
+            <a href="index-2.html">Home</a>
+
+        </li>
+
+        <li>
+            <a href="about.html">Recyclage</a>
+            <ul>
+                <!-- features -->
+                <li>
+                    <a href="shortcodes_teasers.html">Produits  à recycler </a>
+
+                </li>
+
+                <li>
+                    <a href="404.html">Société de recyclage </a>
+
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="#">Vente/Achat</a>
+
+        </li>
+
+        <li>
+            <a href="gallery-regular.html">Réparation</a>
+            <ul>
+                <!-- Gallery regular -->
+                <li>
+                    <a href="gallery-regular.html">Produits à réparer </a>
+
+                </li>
+
+                <li>
+                    <a href="gallery-fullwidth.html">Société de réparation</a>
+
+                </li>
+
+            </ul>
+        </li>
+        <!-- eof Gallery -->
+
+        <!-- blog -->
+        <li>
+            <a href="blog-right.html">Don</a>
+            <ul>
+
+                <li>
+                    <a href="blog-right.html">Produits à donner </a>
+                </li>
+
+                <li>
+                    <a href="blog-single-right.html">Association de donation </a>
+
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="contact.html">Forum</a>
+
+        </li>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li>
+                <a href="{{ path('fos_user_profile_show') }}">Profile</a>
+            </li>
+        {% endif %}
+        <!-- eof contacts -->
+
+        <li>
+        {% if app.user %}
+            <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a>
+            <a href="{{ path('fos_user_security_logout') }}">logout</a>
+
+        {% else %}
+        </li>
+
+        <li>
+            <a class="color1" href="{{ path('fos_user_registration_register') }}" >s'inscrire</a>
+        </li>
+        <li>
+            <a class="color1" href="{{ path('fos_user_security_login') }}" >Se Connecter </a>
+
+        </li>
+        {% endif %}
+
+
+    </ul>
+</nav>
