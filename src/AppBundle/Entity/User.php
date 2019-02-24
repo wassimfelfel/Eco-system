@@ -33,6 +33,11 @@ class User extends BaseUser
      */
     private $user_messages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Produit" , mappedBy= "user")
+     */
+    private $produits;
+
     public function __construct()
     {
             parent::__construct();
@@ -145,5 +150,39 @@ class User extends BaseUser
     public function getUserMessages()
     {
         return $this->user_messages;
+    }
+
+    /**
+     * Add produit
+     *
+     * @param \AppBundle\Entity\Produit $produit
+     *
+     * @return User
+     */
+    public function addProduit(\AppBundle\Entity\Produit $produit)
+    {
+        $this->produits[] = $produit;
+
+        return $this;
+    }
+
+    /**
+     * Remove produit
+     *
+     * @param \AppBundle\Entity\Produit $produit
+     */
+    public function removeProduit(\AppBundle\Entity\Produit $produit)
+    {
+        $this->produits->removeElement($produit);
+    }
+
+    /**
+     * Get produits
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProduits()
+    {
+        return $this->produits;
     }
 }

@@ -1,3 +1,15 @@
+app_typeproduit:
+    resource: "@AppBundle/Controller/TypeproduitController.php"
+    type:     annotation
+
+app_categorie:
+    resource: "@AppBundle/Controller/CategorieController.php"
+    type:     annotation
+
+app_produit:
+    resource: "@AppBundle/Controller/ProduitController.php"
+    type:     annotation
+
 app_ticket:
     resource: "@AppBundle/Controller/TicketController.php"
     type:     annotation

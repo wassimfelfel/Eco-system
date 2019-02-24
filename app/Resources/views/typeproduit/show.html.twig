@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Typeproduit</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ typeproduit.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ typeproduit.nom }}</td>
+            </tr>
+            <tr>
+                <th>Createat</th>
+                <td>{% if typeproduit.createat %}{{ typeproduit.createat|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_typeproduit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_typeproduit_edit', { 'id': typeproduit.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

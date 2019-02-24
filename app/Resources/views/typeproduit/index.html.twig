@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Typeproduits list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Createat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeproduit in typeproduits %}
+            <tr>
+                <td><a href="{{ path('admin_typeproduit_show', { 'id': typeproduit.id }) }}">{{ typeproduit.id }}</a></td>
+                <td>{{ typeproduit.nom }}</td>
+                <td>{% if typeproduit.createat %}{{ typeproduit.createat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_typeproduit_show', { 'id': typeproduit.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_typeproduit_edit', { 'id': typeproduit.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_typeproduit_new') }}">Create a new typeproduit</a>
+        </li>
+    </ul>
+{% endblock %}

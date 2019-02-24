@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Produit en vente</h1>
+    <div class="container">
+        <div class="row">
+            {% for produit in paginateProducts %}
+            <div class="">
+                <h5>nom: {{ produit.nom }}</h5>
+                <img src="{{ asset('images/products/'~produit.imageName) }}" width="200px" alt="">
+                <p>description: {{ produit.description }}</p>
+                <p>nom utilisateur: {{ produit.user.username }}</p>
+                <p>email utilisateur: {{ produit.user.email }}</p>
+                <p>type: {{ produit.type.nom }}</p>
+            </div>
+                <hr>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="navigation">
+        {{ knp_pagination_render(paginateProducts) }}
+    </div>
+
+{% endblock %}
+
+
+
+{% block steal %}
+<style>
+    .reservations{
+        background-color: #BF3E26;
+        font-size: 13pt;
+        margin-bottom: 50px;
+    }
+    .reservations a{
+        color:#98fb98;
+    }
+    .reservations a:hover ,.reservations a:focus , .reservations a:visited{
+        color:#98fb98;
+    }
+    .pagination > li > a,
+    .pagination > li > span{
+        color: #BF3E26;
+    }
+    .pagination > li > a:hover,
+    .pagination > li > span:hover,
+    .pagination > li > a:focus,
+    .pagination > li > span:focus{
+        background-color: #98fb98;
+        color:#BF3E26;
+    }
+    .pagination > .active > a,
+    .pagination > .active > span,
+    .pagination > .active > a:hover,
+    .pagination > .active > span:hover,
+    .pagination > .active > a:focus,
+    .pagination > .active > span:focus{
+        background-color: #1C8C42;
+        color: #ffffff;
+        border: 1px solid #dddddd;
+    }
+</style>
+{% endblock %}
