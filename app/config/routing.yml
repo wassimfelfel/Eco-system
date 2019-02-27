@@ -24,3 +24,7 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+article:
+    resource: "@ArticleBundle/Resources/config/routing.yml"
+    prefix:   /
