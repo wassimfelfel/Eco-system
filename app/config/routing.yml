@@ -28,3 +28,7 @@ fos_user:
 article:
     resource: "@ArticleBundle/Resources/config/routing.yml"
     prefix:   /
+
+events:
+    resource: "@EventsBundle/Resources/config/routing.yml"
+    prefix:   /
