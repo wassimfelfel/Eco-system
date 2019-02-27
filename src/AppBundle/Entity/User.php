@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\userRepository")
  */
 class User extends BaseUser
 {
@@ -29,9 +30,23 @@ class User extends BaseUser
     private $em_tickets;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket" , mappedBy= "recepteur")
+     */
+    private $rec_messages;
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket" , mappedBy= "emeteur")
+     */
+    private $em_messages;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Message" , mappedBy= "user")
      */
     private $user_messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Produit" , mappedBy= "user")
+     */
+    private $produits;
 
     public function __construct()
     {
@@ -145,5 +160,39 @@ class User extends BaseUser
     public function getUserMessages()
     {
         return $this->user_messages;
+    }
+
+    /**
+     * Add produit
+     *
+     * @param \AppBundle\Entity\Produit $produit
+     *
+     * @return User
+     */
+    public function addProduit(\AppBundle\Entity\Produit $produit)
+    {
+        $this->produits[] = $produit;
+
+        return $this;
+    }
+
+    /**
+     * Remove produit
+     *
+     * @param \AppBundle\Entity\Produit $produit
+     */
+    public function removeProduit(\AppBundle\Entity\Produit $produit)
+    {
+        $this->produits->removeElement($produit);
+    }
+
+    /**
+     * Get produits
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProduits()
+    {
+        return $this->produits;
     }
 }

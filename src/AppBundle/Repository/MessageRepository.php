@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class MessageRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findMessages($value){
+        return $this->createQueryBuilder('u')
+            ->andWhere("t.emeteur = :val OR t.recepteur = :val")
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,6 +38,24 @@ class Message
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User" , inversedBy= "rec_messages")
+     */
+    private $recepteur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User" , inversedBy= "em_messages")
+     */
+    private $emeteur;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->created_at = Carbon::now();
+    }
+
 
     /**
      * @return \DateTime
@@ -45,6 +63,38 @@ class Message
     public function getCreatedAt()
     {
         return $this->created_at;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRecepteur()
+    {
+        return $this->recepteur;
+    }
+
+    /**
+     * @param mixed $recepteur
+     */
+    public function setRecepteur($recepteur)
+    {
+        $this->recepteur = $recepteur;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmeteur()
+    {
+        return $this->emeteur;
+    }
+
+    /**
+     * @param mixed $emeteur
+     */
+    public function setEmeteur($emeteur)
+    {
+        $this->emeteur = $emeteur;
     }
 
     /**
