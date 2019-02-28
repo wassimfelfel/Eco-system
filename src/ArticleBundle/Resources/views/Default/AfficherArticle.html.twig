@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {% for entity in Article %}
+
+        <h3><a href="Article/{{ entity.id }}">{{ entity.titre }}</a></h3>
+        <p>{{ entity.auteur }} - {{ entity.date|date("m/d/Y") }}</p>
+        <p>nombre de vues: {{ entity.vue }}</p>
+
+        <br>
+
+    {% endfor %}
+{% endblock %}

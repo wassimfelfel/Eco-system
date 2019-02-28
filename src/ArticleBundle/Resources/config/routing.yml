@@ -1,0 +1,23 @@
+article_homepage:
+    path:     /
+    defaults: { _controller: ArticleBundle:Default:index }
+AjouterArticle:
+    path:     /AjouterArticle
+    defaults: { _controller: ArticleBundle:Default:AjouterArticle}
+AfficherArticle:
+    path:     /AfficherArticle
+    defaults: { _controller: ArticleBundle:Default:AfficherArticle}
+SupprimerArticle:
+    path:     /SupprimerArticle {id}
+    defaults: { _controller: ArticleBundle:Default:SupprimerArticle}
+ModifierArticle:
+    path:     /ModifierArticle/{id}
+    defaults: { _controller: ArticleBundle:Default:ModifierArticle}
+
+Article:
+    path: /Article/{id}
+    defaults: { _controller: ArticleBundle:Default:Article, id: null }
+    requirements:
+        id: .*
+
+
