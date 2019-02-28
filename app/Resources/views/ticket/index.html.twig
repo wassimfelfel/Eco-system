@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Tickets list</h1>
+
+    <div class="col-sm-12 text-center">
+        <h1 class="highlight">Liste des Tickets</h1>
+
+    </div>
 
     <ul>
         <li>
-            <a class="theme_button color1" href="{{ path('ticket_new') }}">Create a new ticket</a>
+            <a class="theme_button color1" href="{{ path('ticket_new') }}">Générer un nouveau ticket</a>
         </li>
     </ul>
 
@@ -29,15 +33,15 @@
 
             <td>{{ ticket.sujet }}</td>
             <td>{% if ticket.statut %}Yes{% else %}No{% endif %}</td>
-            <td>{{ ticket.attachment }}</td>
+            <td><img src="{{ asset('images/tickets/'~ticket.imageName) }}" width="80px" alt=""></td>
             <td>{{ ticket.emeteur.username }}</td>
             <td>{{ ticket.recepteur.username }}</td>
             <td>{% if ticket.createdat %}{{ ticket.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
             <td>
                 <ul>
                     <li>
-                        <a class="theme_button color1" href="{{ path('ticket_show', { 'id': ticket.id }) }}">show</a>
-                        <a class="theme_button color1" href="{{ path('ticket_edit', { 'id': ticket.id }) }}">edit</a>
+                        <a class="theme_button color1" href="{{ path('ticket_show', { 'id': ticket.id }) }}">Afficher</a>
+                        {#<a class="theme_button color1" href="{{ path('ticket_edit', { 'id': ticket.id }) }}">edit</a>#}
                     </li>
 
                 </ul>

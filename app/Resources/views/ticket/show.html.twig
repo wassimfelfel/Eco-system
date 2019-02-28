@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Ticket</h1>
+
+    <div class="col-sm-12 text-center">
+        <h1 class="highlight">Votre Ticket</h1>
+
+    </div>
 
     <table>
         <tbody>
@@ -28,23 +32,30 @@
             </tr>
             <tr>
                 <th>Attachment</th>
-                <td>{{ ticket.attachment }}</td>
+                <td><img src="{{ asset('images/tickets/'~ticket.imageName) }}" width="180px" alt=""></td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a class="theme_button color1" href="{{ path('ticket_index') }}">Back to the list</a>
+            <a class="theme_button color1" href="{{ path('ticket_index') }}">Retourner à la liste des tickets</a>
 
         </li>
-        <li>
-            <a class="theme_button color1" href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
     </ul>
+
+
+
+   {% include 'ticket/message.html.twig' %}
+
+
+    {% for message in messages %}
+        <tr>
+            <td>{{ message.user.username }}</td> <br>
+            <td>{{ message.text }}</td>
+            <td>{% if message.createdat %}{{ message.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+
+        <hr>
+    {% endfor %}
 {% endblock %}

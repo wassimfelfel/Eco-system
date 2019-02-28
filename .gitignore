@@ -15,4 +15,10 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+<<<<<<< HEAD
+/.idea/workspace.xml
+/.idea/vcs.xml
+
+=======
 .idea/workspace.xml
+>>>>>>> b82f17a2653d8eff0afe0553820b4c2e6f9cfddf

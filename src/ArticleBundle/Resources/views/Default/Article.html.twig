@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+
+    <p>
+    <h2>{{ Article.titre }}</h2>
+    <p>{{ Article.contenu }}</p>
+
+    <h3>Comments</h3>
+{% for Commentaires in Commentaires %}
+        <strong>{{ Commentaires.auteur }}</strong> {{ Commentaires.date|date("m/d/Y") }} said : {{ Commentaires.contenu }}<br>
+    {% else %}
+        No comments yet.
+    {% endfor %}
+
+    <h3>Add a comment</h3>
+   {# {% if commentForm %}
+        {{ form_start(commentForm) }}
+        <div class="form-group">
+            {{ form_errors(commentForm.content) }}
+            {{ form_widget(commentForm.content, { 'attr':  {
+                'rows': '4',
+                'class': 'form-control',
+                'placeholder': 'Enter your comment'
+            }}) }}
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Publish comment" />
+        </div>
+        {{ form_end(commentForm) }}
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <a href="{{ path('login') }} ">Log in</a> to add comments.
+    {% endif %}
+    </p>
+    #}
+    {{ form(form) }}
+    <br>
+    <h3><a href="../AfficherArticle">Retour a la liste des articles</a></h3>
+
+
+{% endblock %}

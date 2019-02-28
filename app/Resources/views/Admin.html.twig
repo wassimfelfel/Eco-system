@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -9,9 +10,10 @@
 
 <!-- Mirrored from webdesign-finder.com/html/gogreen/admin_bootstrap.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Feb 2019 17:37:14 GMT -->
 <head>
-    <title>GoGreen</title>
+    <title>{% block title %}Backend Admin{% endblock %}</title>
+
     <meta charset="utf-8">
-    <!--[if IE]>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <![endif]-->
     <meta name="description" content="">
@@ -19,46 +21,26 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-    <link rel="stylesheet" href="css/dashboard.css" class="color-switcher-link">
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" class="color-switcher-link">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}css/dashboard.css" class="color-switcher-link">
+    <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js') }}"></script>
 
-    <!--[if lt IE 9]>
-    <script src="js/vendor/html5shiv.min.js"></script>
-    <script src="js/vendor/respond.min.js"></script>
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <![endif]-->
+    {% block steal %}{% endblock %}
+
 
 </head>
 
 <body class="admin">
-<!--[if lt IE 9]>
-<div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="highlight">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
 
-<div class="preloader">
-    <div class="preloader_image"></div>
-</div>
+
+
+
 
 <!-- search modal -->
-<div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">
-				<i class="rt-icon2-cross2"></i>
-			</span>
-    </button>
-    <div class="widget widget_search">
-        <form method="get" class="searchform search-form form-inline" action="http://webdesign-finder.com/html/gogreen/">
-            <div class="form-group">
-                <input type="text" value="" name="search" class="form-control" placeholder="Search keyword" id="modal-search-input">
-            </div>
-            <button type="submit" class="theme_button">Search</button>
-        </form>
-    </div>
-</div>
+
 
 <!-- Unyson messages modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
@@ -128,13 +110,13 @@
 
         <header class="page_header_side page_header_side_sticked active-slide-side-header ds">
             <div class="side_header_logo ds ms">
-                <a href="admin_index.html">
+
 						<span class="logo_text playfair margin_0">
-							Oliver Pistajek
+							<strong>Administrateur</strong>
 						</span>
                 </a>
             </div>
-            <span class="toggle_menu_side toggler_light header-slide">
+
 					<span></span>
 				</span>
             <div class="scrollbar-macosx">
@@ -153,8 +135,7 @@
                                             <img src="images/team/01.jpg" alt="">
                                         </div>
                                         <div class="media-body media-middle">
-                                            <h4>Ann Andersen</h4>
-                                            Administrator
+                                            <img src="{{ asset ('images/logo.png')}}">
 
                                         </div>
 
@@ -209,146 +190,53 @@
                             <li>
                                 <a href="#">
                                     <i class="fa fa-user"></i>
-                                    Account
+                                    Listes des utilisateurs
                                 </a>
-                                <ul>
-                                    <li>
-                                        <a href="admin_profile.html">
-                                            Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="admin_profile_edit.html">
-                                            Edit Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="admin_inbox.html">
-                                            Inbox
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="admin_signin.html">
-                                            Sign In
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="admin_signup.html">
-                                            Sign Up
-                                        </a>
-                                    </li>
-                                </ul>
+
                             </li>
                             <li>
                                 <a href="admin_posts.html">
                                     <i class="fa fa-file-text"></i>
-                                    Posts
+                                    Listes des tickets
                                 </a>
-                                <ul>
-                                    <li>
-                                        <a href="admin_posts.html">
-                                            Posts
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="admin_post.html">
-                                            Single Post
-                                        </a>
-                                    </li>
 
-                                </ul>
                             </li>
                             <li>
                                 <a href="admin_products.html">
                                     <i class="fa fa-suitcase"></i>
-                                    Products
+                                    Listes des produits
                                 </a>
-                                <ul>
-                                    <li>
-                                        <a href="admin_products.html">
-                                            Products
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="admin_product.html">
-                                            Single Product
-                                        </a>
-                                    </li>
 
-                                </ul>
                             </li>
                             <li>
                                 <a href="admin_orders.html">
                                     <i class="fa fa-shopping-cart"></i>
-                                    Orders
+                                    Listes des réclamations
                                 </a>
-                                <ul>
-                                    <li>
-                                        <a href="admin_orders.html">
-                                            Orders
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="admin_order.html">
-                                            Single Order
-                                        </a>
-                                    </li>
-                                </ul>
+
                             </li>
                             <li>
                                 <a href="admin_comments.html">
                                     <i class="fa fa-comment"></i>
-                                    Comments
+                                    Listes des événements
                                 </a>
-                                <ul>
-                                    <li>
-                                        <a href="admin_comments.html">
-                                            Comments
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="admin_comment.html">
-                                            Single Comment
-                                        </a>
-                                    </li>
-                                </ul>
+
                             </li>
                             <li>
                                 <a href="admin_faq.html">
                                     <i class="fa fa-support"></i>
-                                    FAQ
+                                    Forum
                                 </a>
                             </li>
                         </ul>
 
-                        <h3 class="dark_bg_color">UI Elements</h3>
-                        <ul class="menu-click">
-                            <li>
-                                <a href="admin_tables.html">
-                                    <i class="fa fa-table"></i>
-                                    Tables
-                                </a>
-                            </li>
-                            <li>
-                                <a href="admin_forms.html">
-                                    <i class="fa fa-check-square-o"></i>
-                                    Forms
-                                </a>
-                            </li>
-                            <li>
-                                <a href="admin_bootstrap.html">
-                                    <i class="fa fa-cog"></i>
-                                    Bootstrap
-                                </a>
-                            </li>
+
+
                         </ul>
                     </nav>
                     <!-- eof main side nav -->
 
-                    <div class="with_padding grey text-center">
-                        10GB of
-                        <strong>250GB</strong> Free
-                    </div>
+
 
                 </div>
             </div>
@@ -356,15 +244,8 @@
 
         <header class="page_header header_darkgrey">
 
-            <div class="widget widget_search">
-                <form method="get" class="searchform form-inline" action="http://webdesign-finder.com/html/gogreen/">
-                    <div class="form-group">
-                        <label class="screen-reader-text" for="widget-search-header">Search for:</label>
-                        <input id="widget-search-header" type="text" value="" name="search" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="theme_button">Search</button>
-                </form>
-            </div>
+
+
 
 
             <div class="pull-right big-header-buttons">
@@ -372,11 +253,11 @@
 
 
                     <li class="dropdown header-notes-dropdown">
-                        <a class="header-button" data-target="#" href="index.html" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                            <i class="fa fa-bell-o grey"></i>
-                            <span class="header-button-text">Messages</span>
-                            <span class="header-dropdown-number">
-									12
+
+
+
+
+
 								</span>
                         </a>
 
@@ -491,12 +372,8 @@
                     </li>
 
                     <li class="dropdown header-notes-dropdown">
-                        <a class="header-button" data-target="#" href="index.html" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                            <i class="fa fa-envelope-o grey"></i>
-                            <span class="header-button-text">Inbox</span>
-                            <span class="header-dropdown-number">
-									8
-								</span>
+
+
                         </a>
 
                         <div class="dropdown-menu ls">
@@ -567,8 +444,8 @@
 
                     <li class="dropdown header-notes-dropdown">
                         <a class="header-button" data-target="#" href="index.html" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                            <i class="fa fa-calendar-o grey"></i>
-                            <span class="header-button-text">User</span>
+
+
                         </a>
                         <div class="dropdown-menu ls">
 
@@ -697,11 +574,7 @@
                     </div>
                     <!-- .col-* -->
                     <div class="col-md-6 text-md-right">
-							<span class="dashboard-daterangepicker">
-								<i class="fa fa-calendar"></i>
-								<span></span>
-								<i class="caret"></i>
-							</span>
+
                     </div>
                     <!-- .col-* -->
                 </div>
@@ -715,9 +588,8 @@
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <h3>Twitter Bootstrap
-                            <small>elements</small>
-                        </h3>
+
+
                     </div>
                 </div>
                 <!-- .row -->
@@ -726,7 +598,7 @@
                     <div class="col-md-6">
                         <div class="with_border with_padding">
 
-                            <h4>Bootstrap Alerts</h4>
+                            <h4>Liste des tickets</h4>
 
                             <div class="alert alert-success" role="alert">
                                 <button type="button" class="close" data-dismiss="alert">
@@ -768,7 +640,7 @@
                         <div class="with_border with_padding">
 
 
-                            <h4>Collapse Accordion</h4>
+                            <h4>Liste des réclamations</h4>
                             <div class="panel-group" id="accordion2">
 
                                 <div class="panel panel-default">

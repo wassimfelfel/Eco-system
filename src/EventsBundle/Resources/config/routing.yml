@@ -1,0 +1,47 @@
+events_homepage:
+    path:     /
+    defaults: { _controller: EventsBundle:Default:index }
+
+AjouterEvent:
+    path:     /AjouterEvent
+    defaults: { _controller: EventsBundle:Default:AjouterEvent}
+AfficherEvent:
+    path:     /AfficherEvent
+    defaults: { _controller: EventsBundle:Default:AfficherEvent}
+SupprimerEvent:
+    path:     /SupprimerEvent {id}
+    defaults: { _controller: EventsBundle:Default:SupprimerEvent}
+ModifierEvent:
+    path:     /ModifierEvent/{id}
+    defaults: { _controller: EventsBundle:Default:ModifierEvent}
+Afficher1Event:
+    path:     /Afficher1Event/{id}
+    defaults: { _controller: EventsBundle:Default:Afficher1Event,id: null}
+    requirements:
+        id: .*
+AjouterCategorie:
+    path:     /AjouterCategorie
+    defaults: { _controller: EventsBundle:Default:AjouterCategorie}
+AfficherCategorie:
+    path:     /AfficherCategorie
+    defaults: { _controller: EventsBundle:Default:AfficherCategorie}
+AfficherToutEvent:
+    path:     /AfficherToutEvent
+    defaults: { _controller: EventsBundle:Default:AfficherToutEvent}
+ad_AfficherToutEvent:
+    path:     /ad_AfficherToutEvent
+    defaults: { _controller: EventsBundle:Default:ad_AfficherToutEvent}
+SupprimerCategorie:
+    path:     /SupprimerCategorie {idcat}
+    defaults: { _controller: EventsBundle:Default:SupprimerCategorie}
+ModifierCategorie:
+    path:     /ModifierCategorie/{idcat}
+    defaults: { _controller: EventsBundle:Default:ModifierCategorie}
+ArchiverEvent:
+    path:     /ArchiverEvent {id}
+    defaults: { _controller: EventsBundle:Default:ArchiverEvent}
+
+
+
+
+

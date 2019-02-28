@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TicketType extends AbstractType
 {
@@ -20,7 +21,9 @@ class TicketType extends AbstractType
             ->add('statut',ChoiceType::class,array
         ('choices'=>array(''=>'','Ouvert'=>'ouvert','Fermé'=>'Fermé')))
             ->add('sujet')
-            ->add('attachment')
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+            ])
             ->add('recepteur');
     }/**
      * {@inheritdoc}

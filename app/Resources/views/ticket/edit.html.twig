@@ -1,27 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Ticket edit</h1>
+    <div class="col-sm-12 text-center">
+        <h2 class="highlight">Ticket edit</h2>
+        <ol class="breadcrumb darklinks">
+
+
+        </ol>
+    </div>
+
+    <ul>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input class="theme_button color1" type="submit" value="OK" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a class="theme_button" href="{{ path('ticket_index') }}"><i class="glyphicon glyphicon-ok">Back to the list</i></a>
 
-        </li>
         <li>
+            <a class="theme_button color1" href="{{ path('ticket_index') }}"> Back to the list</a>
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="theme_button color1"  type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
 
             <form method="post" action="{{ path('ticket_delete', {'id' : ticket.id}) }}">
-                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_method" value="Delete">
                 <input type="hidden" name="_token" value="{{ "EDIT" }}">
             </form>
+
         </li>
     </ul>
 {% endblock %}

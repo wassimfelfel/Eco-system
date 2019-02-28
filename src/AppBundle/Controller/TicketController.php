@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ticket;
+use AppBundle\Entity\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +40,7 @@ class TicketController extends Controller
      * @Route("/new", name="ticket_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request,\Swift_Mailer $mailer)
     {
         $ticket = new Ticket();
         $form = $this->createForm('AppBundle\Form\TicketType', $ticket);
@@ -48,12 +49,26 @@ class TicketController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $ticket->setEmeteur($this->getUser());
+
+            $email = (new \Swift_Message('Nouveau TICKET'))
+                    ->setFrom('ecosystem@contact.com')
+                    ->setTo($ticket->getRecepteur()->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            'Emails/ticket.html.twig', [
+                                'name' => $ticket->getRecepteur()->getUsername(),
+                                'emetteur' => $ticket->getEmeteur()->getUsername(),
+                                'id_ticket' => $ticket->getId()
+                            ]
+                        ),
+                        'text/html'
+                    );
+            $mailer->send($email);
+
             $em->persist($ticket);
             $em->flush();
-
             return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
         }
-
         return $this->render('ticket/new.html.twig', array(
             'ticket' => $ticket,
             'form' => $form->createView(),
@@ -66,13 +81,28 @@ class TicketController extends Controller
      * @Route("/{id}", name="ticket_show")
      * @Method("GET")
      */
-    public function showAction(Ticket $ticket)
+    public function showAction(Ticket $ticket,Request $request)
     {
-        $deleteForm = $this->createDeleteForm($ticket);
+        $em = $this->getDoctrine()->getManager();
+        $messages = $em->getRepository('AppBundle:Message')->findByTicket($ticket);
+
+        $message = new Message();
+        $form = $this->createForm('AppBundle\Form\MessageType', $message);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $message->setUser($this->getUser());
+            $message->setTicket($ticket);
+            $em->persist($message);
+            $em->flush();
+
+            return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
+        }
 
         return $this->render('ticket/show.html.twig', array(
             'ticket' => $ticket,
-            'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView(),
+            'messages' => $messages
         ));
     }
 
@@ -112,7 +142,6 @@ class TicketController extends Controller
         $form = $this->createDeleteForm($ticket);
         $form->handleRequest($request);
 
-        dump($ticket);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();

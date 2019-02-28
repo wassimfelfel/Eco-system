@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\userRepository")
  */
 class User extends BaseUser
 {
@@ -27,6 +28,15 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket" , mappedBy= "emeteur")
      */
     private $em_tickets;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket" , mappedBy= "recepteur")
+     */
+    private $rec_messages;
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket" , mappedBy= "emeteur")
+     */
+    private $em_messages;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Message" , mappedBy= "user")

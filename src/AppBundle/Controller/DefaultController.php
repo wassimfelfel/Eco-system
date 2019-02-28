@@ -94,7 +94,6 @@ class DefaultController extends Controller
         return $this->render('default/don.html.twig', array(
             'paginateProducts' => $paginateProducts
         ));
-
     }
     /**
      * @Route("admin/showadmin", name="showadmin_produits")
@@ -188,4 +187,6 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
+
+
 }
