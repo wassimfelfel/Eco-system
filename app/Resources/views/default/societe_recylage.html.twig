@@ -4,7 +4,7 @@
     <h1>recyclage</h1>
     <div class="container">
         <div class="row">
-            {% for roles in paginateProducts %}
+            {% for roles in paginate %}
                 <div class="">
                     <h5>nom: {{ produit.nom }}</h5>
                     <img src="{{ asset('images/products/'~produit.imageName) }}" width="200px" alt="">
