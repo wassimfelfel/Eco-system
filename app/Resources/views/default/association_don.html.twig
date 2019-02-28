@@ -1,27 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Produit en reparation</h1>
-    <div class="container">
-        <div class="row">
-            {% for produit in paginateProducts %}
-                <div class="">
-                    <h5>nom: {{ produit.nom }}</h5>
-                    <img src="{{ asset('images/products/'~produit.imageName) }}" width="200px" alt="">
-                    <p>type: {{ produit.type.nom }}</p>
-                    <p>description: {{ produit.description }}</p>
-                    <p>date de d'annonce: {% if produit.date %}{{ produit.date|date('Y-m-d H:i:s') }}{% endif %}</p>
-                    <p>nom utilisateur: {{ produit.user.username }}</p>
-                    <p>email utilisateur: {{ produit.user.email }}</p>
+    <h1>Association de dons  </h1>
 
-                </div>
-                <hr>
-            {% endfor %}
+    {% for asso in paginate %}
+        <div class="">
+            <p>Nom Societe: {{ asso.username }}</p>
+            <p>email utilisateur: {{ asso.email }}</p>
+
         </div>
-    </div>
+        <hr>
+    {% endfor %}
+
 
     <div class="navigation">
-        {{ knp_pagination_render(paginateProducts) }}
+        {{ knp_pagination_render(paginate) }}
     </div>
 
 {% endblock %}

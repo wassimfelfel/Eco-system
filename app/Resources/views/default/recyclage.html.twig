@@ -8,10 +8,12 @@
                 <div class="">
                     <h5>nom: {{ produit.nom }}</h5>
                     <img src="{{ asset('images/products/'~produit.imageName) }}" width="200px" alt="">
+                    <p>type: {{ produit.type.nom }}</p>
                     <p>description: {{ produit.description }}</p>
+                    <p>date de d'annonce: {% if produit.date %}{{ produit.date|date('Y-m-d H:i:s') }}{% endif %}</p>
                     <p>nom utilisateur: {{ produit.user.username }}</p>
                     <p>email utilisateur: {{ produit.user.email }}</p>
-                    <p>type: {{ produit.type.nom }}</p>
+
                 </div>
                 <hr>
             {% endfor %}

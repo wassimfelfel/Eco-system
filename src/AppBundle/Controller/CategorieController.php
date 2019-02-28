@@ -98,10 +98,12 @@ class CategorieController extends Controller
         ));
     }
 
+
+
     /**
      * Deletes a categorie entity.
      *
-     * @Route("/{id}", name="admin_categorie_delete")
+     * @Route("/delete/{id}", name="admin_categorie_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Categorie $categorie)

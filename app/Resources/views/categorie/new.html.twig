@@ -5,12 +5,14 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+        <li>
         <input type="submit" value="Create" />
+        </li>
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a href="{{ path('admin_categorie_index') }}">Back to the list</a>
+            <a href="{{ path('admin_categorie_index') }}">Retour à la liste </a>
         </li>
     </ul>
 {% endblock %}

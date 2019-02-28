@@ -8,7 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Createat</th>
+                <th>Date de création</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,11 +21,12 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('admin_categorie_show', { 'id': categorie.id }) }}">show</a>
+                            <a href="{{ path('admin_categorie_delete', { 'id': categorie.id }) }}">Supprimer</a>
                         </li>
                         <li>
-                            <a href="{{ path('admin_categorie_edit', { 'id': categorie.id }) }}">edit</a>
+                            <a href="{{ path('admin_categorie_edit', { 'id': categorie.id }) }}">Modifier</a>
                         </li>
+
                     </ul>
                 </td>
             </tr>
@@ -35,7 +36,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_categorie_new') }}">Create a new categorie</a>
+            <a href="{{ path('admin_categorie_new') }}">Creér une nouvelle catégorie</a>
         </li>
     </ul>
 {% endblock %}
