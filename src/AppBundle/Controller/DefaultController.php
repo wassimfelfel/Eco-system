@@ -113,8 +113,6 @@ class DefaultController extends Controller
 
 
 
-
-
     /**
      * @Route("/societe/recyclage", name="societe_recyclage")
      */

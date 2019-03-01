@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Produits list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Prix</th>
+                <th>Image</th>
+                <th>Type</th>
+                <th>Categorie</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td><a href="{{ path('produit_show_admin', { 'id': produit.id }) }}">{{ produit.id }}</a></td>
+                <td>{{ produit.nom }}</td>
+                <td>{{ produit.description }}</td>
+                <td>{% if produit.date %}{{ produit.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ produit.prix }}</td>
+                <td><img src="{{ asset('images/products/'~produit.imageName) }}" width="80px" alt=""></td>
+                <td>{{ produit.type.nom }}</td>
+                <td>{{ produit.categorie.nom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('produit_show_admin', { 'id': produit.id }) }}">Afficher produit </a>
+                        </li>
+                    </ul>
+                </td>
+            ref=>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
