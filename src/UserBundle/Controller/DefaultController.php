@@ -2,6 +2,7 @@
 
 namespace UserBundle\Controller;
 
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
@@ -10,5 +11,7 @@ class DefaultController extends Controller
     {
         return $this->render('@User/Default/index.html.twig');
 
+
     }
+
 }

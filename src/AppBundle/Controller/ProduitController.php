@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Produit;
+use AppBundle\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -102,7 +103,7 @@ class ProduitController extends Controller
     /**
      * Deletes a produit entity.
      *
-     * @Route("/{id}", name="produit_delete")
+     * @Route("/delete/{id}", name="produit_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Produit $produit)
@@ -110,10 +111,10 @@ class ProduitController extends Controller
         $form = $this->createDeleteForm($produit);
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
-            $produit = $em->getRepository(Produit::class)->find($user);
             $em->remove($produit);
             $em->flush();
         }

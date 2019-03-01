@@ -1,20 +1,67 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Produit a donner </h1>
+    <h1>Produit à donner</h1>
     <div class="container">
         <div class="row">
-            {% for produit in paginateProducts %}
-                <div class="">
-                    <h5>nom: {{ produit.nom }}</h5>
-                    <img src="{{ asset('images/products/'~produit.imageName) }}" width="200px" alt="">
-                    <p>description: {{ produit.description }}</p>
-                    <p>nom utilisateur: {{ produit.user.username }}</p>
-                    <p>email utilisateur: {{ produit.user.email }}</p>
-                    <p>type: {{ produit.type.nom }}</p>
-                </div>
-                <hr>
-            {% endfor %}
+
+            <script src="{{ asset('js2/jquery.min.js') }}"></script>
+            <input type="text" id="search" placeholder="chercher">
+            <table id="tab" class="table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>nom</th>
+                    <th>image</th>
+                    <th>type</th>
+                    <th>description</th>
+                    <th>date d'annonce</th>
+                    <th>nom utilisateur</th>
+                    <th>email utilisateur</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for produit in paginateProducts %}
+                    <tr>
+                        <td>{{  produit.nom  }}</td>
+                        <td><img src="{{ asset('images/products/'~produit.imageName)  }}"></td>
+                        <td>{{ produit.type.nom }}</td>
+                        <td>{{  produit.description  }}</td>
+                        <td>{{  produit.date|date('Y-m-d H:i:s')   }}</td>
+                        <td>{{  produit.user.username }}</td>
+                        <td>{{  produit.user.email }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <script>
+                $(document).ready(function(){
+                    $('#search').keyup(function(){
+                        search_table($(this).val());
+                    });
+                    function search_table(value){
+                        $('#tab tbody tr').each(function(){
+                            var found = 'false';
+                            $(this).each(function(){
+                                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                                {
+                                    found = 'true';
+                                }
+                            });
+                            if(found == 'true')
+                            {
+                                $(this).show();
+
+                            }
+                            else
+                            {
+                                $(this).hide();
+
+                            }
+                        });
+                    }
+                });
+            </script>
+
         </div>
     </div>
 

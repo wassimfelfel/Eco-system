@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Produit creation</h1>
+    <h1>Creation d'un produit</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    <li>
+        <input type="submit" value="Creér" />
+    </li>
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('produit_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
+     <li>
+            <a href="{{ path('produit_index') }}">Retour à la liste </a>
+     </li>
+
 {% endblock %}

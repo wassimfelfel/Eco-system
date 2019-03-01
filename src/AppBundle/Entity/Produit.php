@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Produit
  *
@@ -63,7 +64,8 @@ class Produit
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @var string
+     * @var string4
+     *
      */
     private $imageName;
 

@@ -95,6 +95,85 @@ class DefaultController extends Controller
             'paginateProducts' => $paginateProducts
         ));
     }
+    /**
+     * @Route("admin/showadmin", name="showadmin_produits")
+     */
+    public function showadminAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categorie = $em->getRepository('AppBundle:Categorie')->findAll();
+        $produits = $em->getRepository('AppBundle:Produit')->findByCategorie($categorie);
+
+
+        return $this->render('default/showadmin.html.twig', array(
+            'produits' => $produits
+        ));
+
+    }
+
+
+
+    /**
+     * @Route("/societe/recyclage", name="societe_recyclage")
+     */
+    public function societeRecyclageAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager()->createQuery(
+            'SELECT u FROM AppBundle:User u WHERE u.roles LIKE :role')
+            ->setParameter('role', '%"ROLE_SOCIETE_RECYCLAGE"%');
+        $recyclages = $em->getResult();
+        $paginator  = $this->get('knp_paginator');
+        $paginate= $paginator->paginate(
+            $recyclages,
+            $request->query->getInt('page', 1),
+            2
+        );
+
+        //$recyclages = $em->getRepository('AppBundle:User')->findRecyclageCompanies('Role_SOCIETE_RECYCLAGE');
+        return $this->render('default/societe_recylage.html.twig', array(
+            'paginate' => $paginate
+        ));
+    }
+    /**
+     * @Route("/societe/reparation", name="societe_reparation")
+     */
+    public function societeReparationAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager()->createQuery(
+            'SELECT u FROM AppBundle:User u WHERE u.roles LIKE :role')
+            ->setParameter('role', '%"ROLE_SOCIETE_REPARATION"%');
+        $reparations = $em->getResult();
+        $paginator  = $this->get('knp_paginator');
+        $paginate= $paginator->paginate(
+            $reparations,
+            $request->query->getInt('page', 1),
+            2
+        );
+        //$reparations = $em->getRepository('AppBundle:User')->findRecyclageCompanies('Role_SOCIETE_REPARATION');
+        return $this->render('default/societe_reparation.html.twig', array(
+            'paginate' => $paginate
+        ));
+    }
+    /**
+     * @Route("/association/don", name="association_don")
+     */
+    public function AssociationDonAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager()->createQuery(
+            'SELECT u FROM AppBundle:User u WHERE u.roles LIKE :role')
+            ->setParameter('role', '%"ROLE_ASSOCIATION_DON"%');
+        $dons = $em->getResult();
+        $paginator  = $this->get('knp_paginator');
+        $paginate= $paginator->paginate(
+            $dons,
+            $request->query->getInt('page', 1),
+            2
+        );
+        //$dons = $em->getRepository('AppBundle:User')->findDonsCompanies('Role_ASSOCIATION');
+        return $this->render('default/association_don.html.twig', array(
+            'paginate' => $paginate
+        ));
+    }
 
     /**
      * @Route("/admin", name="adminpage")
@@ -107,20 +186,9 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/societe/recyclage", name="societe_recyclage")
-     */
-    public function societeRecyclageAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager()->createQuery(
-            'SELECT u FROM AppBundle:User u WHERE u.roles LIKE :role')
-            ->setParameter('role', '%"ROLE_SOCIETE"%');
-        $recyclages = $em->getResult();
 
-        //$recyclages = $em->getRepository('AppBundle:User')->findRecyclageCompanies('Role_SOCIETE');
-        return $this->render('default/societe_recylage.html.twig', array(
-            'recyclages' => $recyclages
-        ));
-    }
+
+
+
 
 }

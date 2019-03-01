@@ -55,6 +55,7 @@ class commentaire
     private $user;
     /**
      * @ORM\ManyToOne(targetEntity="ArticleBundle\Entity\Article")
+     * @ORM\JoinColumn(name="Article", referencedColumnName="id", onDelete="CASCADE")
      */
     private $Article;
     /**

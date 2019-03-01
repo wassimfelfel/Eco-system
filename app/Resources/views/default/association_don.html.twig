@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Societe de recyclage</h1>
+
+    <script src="{{ asset('js2/jquery.min.js') }}"></script>
+    <input type="text" id="search" placeholder="chercher">
+    <table id="tab" class="table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>nom association</th>
+            <th>email association</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for asso in paginate %}
+            <tr>
+                <td>{{  asso.username }}</td>
+                <td>{{  asso.email }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tab tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+
+    <div class="navigation">
+        {{ knp_pagination_render(paginate) }}
+    </div>
+
+{% endblock %}
+
+
+
+{% block steal %}
+    <style>
+        .reservations{
+            background-color: #BF3E26;
+            font-size: 13pt;
+            margin-bottom: 50px;
+        }
+        .reservations a{
+            color:#98fb98;
+        }
+        .reservations a:hover ,.reservations a:focus , .reservations a:visited{
+            color:#98fb98;
+        }
+        .pagination > li > a,
+        .pagination > li > span{
+            color: #BF3E26;
+        }
+        .pagination > li > a:hover,
+        .pagination > li > span:hover,
+        .pagination > li > a:focus,
+        .pagination > li > span:focus{
+            background-color: #98fb98;
+            color:#BF3E26;
+        }
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus{
+            background-color: #1C8C42;
+            color: #ffffff;
+            border: 1px solid #dddddd;
+        }
+    </style>
+{% endblock %}

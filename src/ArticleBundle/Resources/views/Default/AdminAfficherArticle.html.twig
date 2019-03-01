@@ -1,0 +1,53 @@
+
+
+{% block content %}
+
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="isotope_container isotope row masonry-layout columns_margin_bottom_20">
+                    <div class="isotope-item col-lg-12 col-md-6 col-sm-12">
+                        {% for entity in Article %}
+
+                            <article class="vertical-item content-padding with_background text-center rounded overflow-hidden">
+                                <div class="item-media">
+                                    <img src="images/gallery/01.jpg" alt="">
+                                </div>
+                                <div class="item-content">
+                                    <p class="text-center item-meta">
+							<span class="entry-date highlightlinks">
+								{{ entity.auteur }} - {{ entity.date|date('\\à H:i \\l\\e d-m-y') }}
+							</span>
+                                    </p>
+                                    <h4 class="entry-title">
+                                        <a href="Article/{{ entity.id }}">{{ entity.titre }}</a>
+                                    </h4>
+                                    <span class="entry-date highlightlinks">
+								Nombre de vues : {{ entity.vue }}
+							</span><br>
+                                    <span class="entry-date highlightlinks">
+								Nombre de commentaires : {{ entity.nbcom }}
+							</span><br>
+
+                                        <a href="{{ path('AdminSupprimerArticle',{'id':entity.id}) }}">Supprimer</a>
+                                        <br>
+
+
+
+
+                                </div>
+                            </article><br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div></div>
+
+
+
+
+
+    </div>
+{% endblock %}
