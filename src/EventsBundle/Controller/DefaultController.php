@@ -8,6 +8,7 @@ use EventsBundle\Entity\categories;
 use EventsBundle\Entity\Events;
 use EventsBundle\Form\categoriesType;
 use EventsBundle\Form\EventsType;
+use EventsBundle\Form\ratingType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -41,6 +42,7 @@ class DefaultController extends Controller
 
             $em->persist($Events);
             $em->flush();
+            $this->get('session')->getFlashBag()->set('info', 'Evénement est ajoute avec success');
             return $this->redirectToRoute("AfficherEvent");
         }
         return $this->render("@Events/Default/AjouterEvent.html.twig", array('form' => $form->createView()));
@@ -95,6 +97,7 @@ class DefaultController extends Controller
     {
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
         $Events = $this->getDoctrine()->getRepository(Events::class)->find($id);
+        //$form = $this->createForm(ratingType::class);
         return $this->render("@Events/Default/Afficher1Event.html.twig", array('Events' => $Events));
     }
     //CRUD Categories
@@ -181,6 +184,10 @@ class DefaultController extends Controller
         $em->remove($post);
         $em->flush();
         return $this->redirectToRoute("ad_AfficherToutEvent");
+    }
+    public function ratingAction(){
+
+        return null;
     }
 
 }

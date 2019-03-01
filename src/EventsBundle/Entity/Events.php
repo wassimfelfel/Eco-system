@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+
 /**
  * Events
  *
@@ -77,6 +78,7 @@ class Events
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\GreaterThan("today")
      */
     private $date;
 

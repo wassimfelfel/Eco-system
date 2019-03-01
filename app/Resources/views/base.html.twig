@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/fonts.css')}}">
     <link rel="stylesheet" href="{{ asset('css/main.css')}}" class="color-switcher-link">
     <link rel="stylesheet" href="{{ asset('css/shop.css')}}" class="color-switcher-link">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
     {% block steal %}{% endblock %}
 
 
@@ -106,6 +107,9 @@
 <script src="{{ asset('js/compressed.js')}}"></script>
 <script src="{{ asset('js/main.js')}}"></script>
 <script src="{{ asset('js/switcher.js')}}"></script>
+
+<script src="{{ asset ('web/jquery-3.3.1.js')}}"></script>
+<script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 
 {% block javascripts %}{% endblock %}
 </body>
