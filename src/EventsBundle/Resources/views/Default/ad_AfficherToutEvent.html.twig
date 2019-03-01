@@ -1,0 +1,46 @@
+{% extends 'base2.html.twig' %}
+{% block content %}
+
+
+    {% for entity in Events %}
+        <article class="post side-item content-padding with_background rounded">
+
+            <div class="row">
+
+                <div class="col-md-5">
+                    <div class="item-media">
+                        <img src="{{ asset('uploads/images/Events/' ~ entity.image) }} " alt="">
+                        <div class="media-links">
+                            <a class="abs-link" title="" href=""></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="item-content">
+                        <h4>
+                            <a href="Afficher1Event/{{ entity.id }}">{{ entity.titre }}</a>
+                        </h4>
+
+                        <p class=" grey darklinks">
+                            <span class="rightpadding_20"><i class="fa fa-calendar highlight"></i> {% if entity.date %}{{ entity
+                                .date|date('Y-m-d H:i:s') }}{% endif %}</span>
+                            <i class="fa fa-map-marker highlight"></i> {{ entity.Adresse }}
+                        </p>
+                        <p>{{ entity.categories.nom }}</p>
+                        <p>{{ entity.description }}</p><br>
+                        <button class="btn-danger"><a href="{{ path('SupprimerEvent',{'id':entity.id}) }}">Supprimer</a></button>
+                        <button class="btn-danger"><a href="{{ path('ArchiverEvent',{'id':entity.id}) }}">Archiver</a></button>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+    {% endfor %}
+{% endblock %}

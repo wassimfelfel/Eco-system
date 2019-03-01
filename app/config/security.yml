@@ -7,8 +7,9 @@ security:
         ROLE_SUPER_ADMIN: ROLE_ADMIN
         ROLE_ADMIN:       ROLE_USER
         ROLE_CLIENT:      ROLE_USER
-        ROLE_SOCIETE:     ROLE_USER
-        ROLE_ASSOCIATION: ROLE_USER
+        ROLE_SOCIETE_RECYCLAGE:     ROLE_USER
+        ROLE_SOCIETE_REPARATION:    ROLE_USER
+        ROLE_ASSOCIATION_DON: ROLE_USER
 
     providers:
         fos_userbundle:
@@ -21,6 +22,7 @@ security:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
             # if you are using Symfony < 2.8, use the following config
+                success_handler: redirect.after.login
 
             # csrf_provider: form.csrf_provider
 

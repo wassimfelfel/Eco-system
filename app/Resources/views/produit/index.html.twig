@@ -36,19 +36,16 @@
                         <li>
                             <a href="{{ path('produit_edit', { 'id': produit.id }) }}">Modifier produit</a>
                         </li>
-                        <li>
-                            <a href="{{ path('produit_delete', { 'id': produit.id }) }}">Supprimer</a>
-                        </li>
                     </ul>
                 </td>
-            </tr>
+            ref=>
         {% endfor %}
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('produit_new') }}">Create a new produit</a>
+            <a href="{{ path('produit_new') }}">Creér un nouveau produit</a>
         </li>
     </ul>
 {% endblock %}

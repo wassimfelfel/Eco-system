@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Societe de reparation </h1>
+
+    {% for societe in paginate %}
+        <div class="">
+            <p>Nom Societe: {{ societe.username }}</p>
+            <p>email utilisateur: {{ societe.email }}</p>
+
+        </div>
+        <hr>
+    {% endfor %}
+    <div class="navigation">
+        {{ knp_pagination_render(paginate) }}
+    </div>
+
+{% endblock %}
+
+
+
+{% block steal %}
+    <style>
+        .reservations{
+            background-color: #BF3E26;
+            font-size: 13pt;
+            margin-bottom: 50px;
+        }
+        .reservations a{
+            color:#98fb98;
+        }
+        .reservations a:hover ,.reservations a:focus , .reservations a:visited{
+            color:#98fb98;
+        }
+        .pagination > li > a,
+        .pagination > li > span{
+            color: #BF3E26;
+        }
+        .pagination > li > a:hover,
+        .pagination > li > span:hover,
+        .pagination > li > a:focus,
+        .pagination > li > span:focus{
+            background-color: #98fb98;
+            color:#BF3E26;
+        }
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus{
+            background-color: #1C8C42;
+            color: #ffffff;
+            border: 1px solid #dddddd;
+        }
+    </style>
+{% endblock %}

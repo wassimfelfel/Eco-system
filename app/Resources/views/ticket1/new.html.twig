@@ -1,0 +1,22 @@
+{% extends 'Admin.html.twig' %}
+
+{% block content %}
+
+
+    <div class="col-sm-12 text-center">
+        <h1 class="highlight">Créer nouveau ticket</h1>
+
+    </div>
+
+
+    <ul>
+        <li>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input class="theme_button color1" type="submit" value="Create" />
+            {{ form_end(form) }}
+            <a class="theme_button color1" href="{{ path('ticket_index_admin') }}">Back to the list</a>
+
+        </li>
+    </ul>
+{% endblock %}

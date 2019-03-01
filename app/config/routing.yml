@@ -1,3 +1,7 @@
+app_ticket1:
+    resource: "@AppBundle/Controller/Ticket1Controller.php"
+    type:     annotation
+
 app_typeproduit:
     resource: "@AppBundle/Controller/TypeproduitController.php"
     type:     annotation
@@ -28,3 +32,9 @@ fos_user:
 article:
     resource: "@ArticleBundle/Resources/config/routing.yml"
     prefix:   /
+
+events:
+    resource: "@EventsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

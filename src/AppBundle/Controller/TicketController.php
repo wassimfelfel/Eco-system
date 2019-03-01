@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,10 +26,8 @@ class TicketController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-
         $tickets = $em->getRepository('AppBundle:Ticket')->findTickets($user);
-        dump($tickets);
-
+        
         return $this->render('ticket/index.html.twig', array(
             'tickets' => $tickets,
         ));
@@ -167,4 +166,21 @@ class TicketController extends Controller
             ->getForm()
         ;
     }
+
+
+    public function indexAdminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $tickets = $em->getRepository(Ticket::class)->findAll();
+
+        return $this->render('ticket/indexadmin.html.twig', array(
+            'tickets' => $tickets,
+        ));
+    }
+
+
+
+
+
 }

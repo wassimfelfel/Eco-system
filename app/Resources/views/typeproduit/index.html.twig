@@ -8,7 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Createat</th>
+                <th>Date de création</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,10 +21,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('admin_typeproduit_show', { 'id': typeproduit.id }) }}">show</a>
+                            <a href="{{ path('admin_typeproduit_show', { 'id': typeproduit.id }) }}">Afficher</a>
                         </li>
                         <li>
-                            <a href="{{ path('admin_typeproduit_edit', { 'id': typeproduit.id }) }}">edit</a>
+                            <a href="{{ path('admin_typeproduit_edit', { 'id': typeproduit.id }) }}">Modifier</a>
                         </li>
                     </ul>
                 </td>
@@ -35,7 +35,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_typeproduit_new') }}">Create a new typeproduit</a>
+            <a href="{{ path('admin_typeproduit_new') }}">Créer un nouveau type produit</a>
         </li>
     </ul>
 {% endblock %}

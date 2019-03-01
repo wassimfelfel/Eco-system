@@ -26,7 +26,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-paginator-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+<<<<<<< HEAD
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+=======
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nomaya/social-bundle" />
+>>>>>>> 6aa1ea88242ac4719e4b40de5b78046c17138899
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
