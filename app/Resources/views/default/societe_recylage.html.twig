@@ -1,25 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>recyclage</h1>
-    <div class="container">
-        <div class="row">
-            {% for roles in paginate %}
-                <div class="">
-                    <h5>nom: {{ produit.nom }}</h5>
-                    <img src="{{ asset('images/products/'~produit.imageName) }}" width="200px" alt="">
-                    <p>description: {{ produit.description }}</p>
-                    <p>nom utilisateur: {{ produit.user.username }}</p>
-                    <p>email utilisateur: {{ produit.user.email }}</p>
-                    <p>type: {{ produit.type.nom }}</p>
-                </div>
-                <hr>
-            {% endfor %}
-        </div>
-    </div>
+    <h1>Societe de recyclage </h1>
 
+    {% for societe in paginate %}
+        <div class="">
+            <p>Nom Societe: {{ societe.username }}</p>
+            <p>email utilisateur: {{ societe.email }}</p>
+
+        </div>
+        <hr>
+    {% endfor %}
     <div class="navigation">
-        {{ knp_pagination_render(paginateProducts) }}
+        {{ knp_pagination_render(paginate) }}
     </div>
 
 {% endblock %}
@@ -61,5 +54,4 @@
             border: 1px solid #dddddd;
         }
     </style>
-
 {% endblock %}

@@ -101,7 +101,7 @@ class TypeproduitController extends Controller
     /**
      * Deletes a typeproduit entity.
      *
-     * @Route("/{id}", name="admin_typeproduit_delete")
+     * @Route("/delete/{id}", name="admin_typeproduit_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Typeproduit $typeproduit)

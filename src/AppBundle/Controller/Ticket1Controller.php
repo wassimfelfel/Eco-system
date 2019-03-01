@@ -12,23 +12,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Ticket controller.
  *
- * @Route("ticket")
+ * @Route("ticket1")
  */
-class TicketController extends Controller
+class Ticket1Controller extends Controller
 {
     /**
      * Lists all ticket entities.
      *
-     * @Route("/", name="ticket_index")
+     * @Route("/", name="ticket_index_admin")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $tickets = $em->getRepository('AppBundle:Ticket')->findTickets($user);
-        
-        return $this->render('ticket/index.html.twig', array(
+        $tickets = $em->getRepository('AppBundle:Ticket')->findAll();
+
+        return $this->render('ticket1/index.html.twig', array(
             'tickets' => $tickets,
         ));
     }
@@ -36,7 +36,7 @@ class TicketController extends Controller
     /**
      * Creates a new ticket entity.
      *
-     * @Route("/new", name="ticket_new")
+     * @Route("/new", name="ticket_new_admin")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request,\Swift_Mailer $mailer)
@@ -50,25 +50,25 @@ class TicketController extends Controller
             $ticket->setEmeteur($this->getUser());
 
             $email = (new \Swift_Message('Nouveau TICKET'))
-                    ->setFrom('ecosystem@contact.com')
-                    ->setTo($ticket->getRecepteur()->getEmail())
-                    ->setBody(
-                        $this->renderView(
-                            'Emails/ticket.html.twig', [
-                                'name' => $ticket->getRecepteur()->getUsername(),
-                                'emetteur' => $ticket->getEmeteur()->getUsername(),
-                                'id_ticket' => $ticket->getId()
-                            ]
-                        ),
-                        'text/html'
-                    );
+                ->setFrom('ecosystem@contact.com')
+                ->setTo($ticket->getRecepteur()->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'Emails/ticket.html.twig', [
+                            'name' => $ticket->getRecepteur()->getUsername(),
+                            'emetteur' => $ticket->getEmeteur()->getUsername(),
+                            'id_ticket' => $ticket->getId()
+                        ]
+                    ),
+                    'text/html'
+                );
             $mailer->send($email);
 
             $em->persist($ticket);
             $em->flush();
-            return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
+            return $this->redirectToRoute('ticket_show_admin', array('id' => $ticket->getId()));
         }
-        return $this->render('ticket/new.html.twig', array(
+        return $this->render('ticket1/new.html.twig', array(
             'ticket' => $ticket,
             'form' => $form->createView(),
         ));
@@ -77,7 +77,7 @@ class TicketController extends Controller
     /**
      * Finds and displays a ticket entity.
      *
-     * @Route("/{id}", name="ticket_show")
+     * @Route("/{id}", name="ticket_show_admin")
      * @Method("GET")
      */
     public function showAction(Ticket $ticket,Request $request)
@@ -95,10 +95,10 @@ class TicketController extends Controller
             $em->persist($message);
             $em->flush();
 
-            return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
+            return $this->redirectToRoute('ticket_show_admin', array('id' => $ticket->getId()));
         }
 
-        return $this->render('ticket/show.html.twig', array(
+        return $this->render('ticket1/show.html.twig', array(
             'ticket' => $ticket,
             'form' => $form->createView(),
             'messages' => $messages
@@ -108,7 +108,7 @@ class TicketController extends Controller
     /**
      * Displays a form to edit an existing ticket entity.
      *
-     * @Route("/{id}/edit", name="ticket_edit")
+     * @Route("/{id}/edit", name="ticket_edit_admin")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Ticket $ticket)
@@ -120,10 +120,10 @@ class TicketController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('ticket_index', array('id' => $ticket->getId()));
+            return $this->redirectToRoute('ticket_index_admin', array('id' => $ticket->getId()));
         }
 
-        return $this->render('ticket/edit.html.twig', array(
+        return $this->render('ticket1/edit.html.twig', array(
             'ticket' => $ticket,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -133,7 +133,7 @@ class TicketController extends Controller
     /**
      * Deletes a ticket entity.
      *
-     * @Route("/delete/{id}", name="ticket_delete")
+     * @Route("/delete/{id}", name="ticket_delete_admin")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Ticket $ticket)
@@ -148,7 +148,7 @@ class TicketController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('ticket_index');
+        return $this->redirectToRoute('ticket_index_admin');
     }
 
     /**
@@ -161,23 +161,13 @@ class TicketController extends Controller
     private function createDeleteForm(Ticket $ticket)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('ticket_delete', array('id' => $ticket->getId())))
+            ->setAction($this->generateUrl('ticket_delete_admin', array('id' => $ticket->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 
 
-    public function indexAdminAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $tickets = $em->getRepository(Ticket::class)->findAll();
-
-        return $this->render('ticket/indexadmin.html.twig', array(
-            'tickets' => $tickets,
-        ));
-    }
 
 
 
