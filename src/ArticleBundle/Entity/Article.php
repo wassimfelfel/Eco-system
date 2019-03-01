@@ -28,6 +28,29 @@ class Article
     private $vue;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="nbcom", type="integer", nullable=True)
+     */
+    private $nbcom;
+
+    /**
+     * @return int
+     */
+    public function getNbcom()
+    {
+        return $this->nbcom;
+    }
+
+    /**
+     * @param int $nbcom
+     */
+    public function setNbcom($nbcom)
+    {
+        $this->nbcom = $nbcom;
+    }
+
+    /**
      * @return int
      */
     public function getVue()

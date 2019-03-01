@@ -1,0 +1,29 @@
+
+
+
+
+{% block content %}
+
+
+
+    <h2>{{ Article.titre }}</h2>
+    <p>{{ Article.contenu }}</p>
+
+    <h3>Commentaires</h3>
+    {% for Commentaires in Commentaires %}
+        <strong>{{ Commentaires.auteur }}</strong> {{ Commentaires.date|date('\\à H:i \\l\\e d-m-y') }} : {{ Commentaires.contenu }}<br>
+
+            <a href="{{ path('AdminSupprimerCommentaire',{'id':Commentaires.id}) }}">supprimer</a>
+            <br>
+
+
+    {% else %}
+        No comments yet.
+    {% endfor %}
+
+
+    <br>
+    <h3><a href="../AdminAfficherArticle">Retour a la liste des articles</a></h3>
+
+
+{% endblock %}
