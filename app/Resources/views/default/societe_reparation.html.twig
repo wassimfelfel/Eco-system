@@ -1,16 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Societe de reparation </h1>
+    <h1>Societe de reparation</h1>
 
-    {% for societe in paginate %}
-        <div class="">
-            <p>Nom Societe: {{ societe.username }}</p>
-            <p>email utilisateur: {{ societe.email }}</p>
+    <script src="{{ asset('js2/jquery.min.js') }}"></script>
+    <input type="text" id="search" placeholder="chercher">
+    <table id="tab" class="table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>nom societe</th>
+            <th>email societe</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for societe in paginate %}
+            <tr>
+                <td>{{  societe.username }}</td>
+                <td>{{  societe.email }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tab tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
 
-        </div>
-        <hr>
-    {% endfor %}
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+
     <div class="navigation">
         {{ knp_pagination_render(paginate) }}
     </div>

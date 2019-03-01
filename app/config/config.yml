@@ -111,6 +111,13 @@ knp_paginator:
         pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig'     # sliding pagination controls template
         sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
+<<<<<<< HEAD
+artur_doruch_flash_message:
+    classes:
+        error: fail
+        notice: notice
+        custom: custom-class-name
+=======
 
 nomaya_social:
     buttons:
@@ -144,3 +151,4 @@ nomaya_social:
         facebook:           "http://www.facebook.com/yann.chauvel"
         googleplus:         "https://plus.google.com/105931415830389032796"
     theme:                  'default' # optional
+>>>>>>> 3d6bca70c2bab8732c44fa08084e7c9abaff3153

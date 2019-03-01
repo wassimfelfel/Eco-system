@@ -1,16 +1,84 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+<<<<<<< HEAD
+    <h1>recyclage</h1>
+    <div class="container">
+        <div class="row">
+            {% for roles in paginate %}
+                <div class="">
+                    <h5>nom: {{ produit.nom }}</h5>
+                    <img src="{{ asset('images/products/'~produit.imageName) }}" width="200px" alt="">
+                    <p>description: {{ produit.description }}</p>
+                    <p>nom utilisateur: {{ produit.user.username }}</p>
+                    <p>email utilisateur: {{ produit.user.email }}</p>
+                    <p>type: {{ produit.type.nom }}</p>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+=======
+<<<<<<< HEAD
+    <h1>Societe de recyclage</h1>
+=======
     <h1>Societe de recyclage </h1>
+>>>>>>> 54db49ec8c8ab9d0e937848e9fb078996c72efa6
 
-    {% for societe in paginate %}
-        <div class="">
-            <p>Nom Societe: {{ societe.username }}</p>
-            <p>email utilisateur: {{ societe.email }}</p>
+    <script src="{{ asset('js2/jquery.min.js') }}"></script>
+    <input type="text" id="search" placeholder="chercher">
+    <table id="tab" class="table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>nom societe</th>
+            <th>email societe</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for societe in paginate %}
+            <tr>
+                <td>{{  societe.username }}</td>
+                <td>{{  societe.email }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tab tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
 
+<<<<<<< HEAD
+                    }
+                    else
+                    {
+                        $(this).hide();
+>>>>>>> 3d6bca70c2bab8732c44fa08084e7c9abaff3153
+
+                    }
+                });
+            }
+        });
+    </script>
+
+=======
         </div>
         <hr>
     {% endfor %}
+>>>>>>> 54db49ec8c8ab9d0e937848e9fb078996c72efa6
     <div class="navigation">
         {{ knp_pagination_render(paginate) }}
     </div>

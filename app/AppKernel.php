@@ -24,8 +24,17 @@ class AppKernel extends Kernel
             new ArticleBundle\ArticleBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new EventsBundle\EventsBundle(),
-            new Nomaya\SocialBundle\NomayaSocialBundle(),
+<<<<<<< HEAD
+            new ArturDoruch\FlashMessageBundle\ArturDoruchFlashMessageBundle(),
 
+=======
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6aa1ea88242ac4719e4b40de5b78046c17138899
+>>>>>>> 3d6bca70c2bab8732c44fa08084e7c9abaff3153
+>>>>>>> 15a7a5187cd8ab20b1fcdeb13a8113005302dd4b
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
