@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+<<<<<<< HEAD
     <h1>Societe de recyclage</h1>
+=======
+    <h1>Societe de recyclage </h1>
+>>>>>>> 54db49ec8c8ab9d0e937848e9fb078996c72efa6
 
     <script src="{{ asset('js2/jquery.min.js') }}"></script>
     <input type="text" id="search" placeholder="chercher">
@@ -39,6 +43,7 @@
                     {
                         $(this).show();
 
+<<<<<<< HEAD
                     }
                     else
                     {
@@ -50,6 +55,11 @@
         });
     </script>
 
+=======
+        </div>
+        <hr>
+    {% endfor %}
+>>>>>>> 54db49ec8c8ab9d0e937848e9fb078996c72efa6
     <div class="navigation">
         {{ knp_pagination_render(paginate) }}
     </div>

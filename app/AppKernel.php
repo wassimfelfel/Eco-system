@@ -22,7 +22,12 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new ArticleBundle\ArticleBundle(),
+<<<<<<< HEAD
+            new JMS\TranslationBundle\JMSTranslationBundle(),
+=======
             new EventsBundle\EventsBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+>>>>>>> 6aa1ea88242ac4719e4b40de5b78046c17138899
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -21,3 +21,34 @@ Article:
         id: .*
 
 
+
+Nbvue:
+     path:     /Nbvue {id}
+     defaults: { _controller: ArticleBundle:Default:Nbvue}
+
+SupprimerCommentaire:
+    path:     /SupprimerCommentaire {id}
+    defaults: { _controller: ArticleBundle:Default:SupprimerCommentaire}
+
+ModifierCommentaire:
+    path:     /ModifierCommentaire/{id}
+    defaults: { _controller: ArticleBundle:Default:ModifierCommentaire}
+
+MesArticles:
+    path:     /MesArticles
+    defaults: { _controller: ArticleBundle:Default:MesArticles}
+
+AdminAfficherArticle:
+    path:     /AdminAfficherArticle
+    defaults: { _controller: ArticleBundle:Default:AdminAfficherArticle}
+AdminSupprimerArticle:
+    path:     /AdminSupprimerArticle {id}
+    defaults: { _controller: ArticleBundle:Default:AdminSupprimerArticle}
+AdminArticle:
+    path: /AdminArticle/{id}
+    defaults: { _controller: ArticleBundle:Default:AdminArticle, id: null }
+    requirements:
+        id: .*
+AdminSupprimerCommentaire:
+    path:     /AdminSupprimerCommentaire {id}
+    defaults: { _controller: ArticleBundle:Default:AdminSupprimerCommentaire}

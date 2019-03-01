@@ -1,0 +1,34 @@
+{% extends 'Admin.html.twig' %}
+
+{% block content %}
+    <div class="col-sm-12 text-center">
+        <h2 class="highlight">Ticket edit</h2>
+        <ol class="breadcrumb darklinks">
+
+
+        </ol>
+    </div>
+
+    <ul>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input class="theme_button color1" type="submit" value="OK" />
+    {{ form_end(edit_form) }}
+
+
+        <li>
+            <a class="theme_button color1" href="{{ path('ticket_index_admin') }}"> Back to the list</a>
+
+            {{ form_start(delete_form) }}
+                <input class="theme_button color1"  type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+
+            <form method="post" action="{{ path('ticket_delete_admin', {'id' : ticket.id}) }}">
+                <input type="hidden" name="_method" value="Delete">
+                <input type="hidden" name="_token" value="{{ "EDIT" }}">
+            </form>
+
+        </li>
+    </ul>
+{% endblock %}

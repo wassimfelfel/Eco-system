@@ -1,3 +1,7 @@
+app_ticket1:
+    resource: "@AppBundle/Controller/Ticket1Controller.php"
+    type:     annotation
+
 app_typeproduit:
     resource: "@AppBundle/Controller/TypeproduitController.php"
     type:     annotation
@@ -36,3 +40,5 @@ article:
 events:
     resource: "@EventsBundle/Resources/config/routing.yml"
     prefix:   /
+
+

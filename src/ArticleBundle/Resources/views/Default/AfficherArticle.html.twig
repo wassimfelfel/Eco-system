@@ -1,13 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    {% for entity in Article %}
+    <button><a href="{{ path('MesArticles') }}">Mes Articles</a></button>
+    <button><a href="{{ path('AjouterArticle') }}">Ajouter un Article</a></button>
 
-        <h3><a href="Article/{{ entity.id }}">{{ entity.titre }}</a></h3>
-        <p>{{ entity.auteur }} - {{ entity.date|date("m/d/Y") }}</p>
-        <p>nombre de vues: {{ entity.vue }}</p>
 
-        <br>
+            <div class="container">
+                <div class="row">
 
-    {% endfor %}
+        <div class="col-sm-12">
+            <div class="isotope_container isotope row masonry-layout columns_margin_bottom_20">
+        <div class="isotope-item col-lg-12 col-md-6 col-sm-12">
+            {% for entity in Article %}
+
+                <article class="vertical-item content-padding with_background text-center rounded overflow-hidden">
+                    <div class="item-media">
+                        <img src="images/gallery/01.jpg" alt="">
+                    </div>
+                    <div class="item-content">
+                        <p class="text-center item-meta">
+							<span class="entry-date highlightlinks">
+								{{ entity.auteur }} - {{ entity.date|date('\\à H:i \\l\\e d-m-y') }}
+							</span>
+                        </p>
+                        <h4 class="entry-title">
+                            <a href="Article/{{ entity.id }}">{{ entity.titre }}</a>
+                        </h4>
+                        <span class="entry-date highlightlinks">
+								Nombre de vues : {{ entity.vue }}
+							</span><br>
+                        <span class="entry-date highlightlinks">
+								Nombre de commentaires : {{ entity.nbcom }}
+							</span><br>
+                        {% if entity.user.id ==  user.id %}
+                            <a href="{{ path('SupprimerArticle',{'id':entity.id}) }}">Supprimer</a> / 
+                            <a href="{{ path('ModifierArticle',{'id':entity.id}) }}">  Modifier</a><br>
+
+                        {% endif %}
+
+                        <div>
+
+
+                            <ul class="list-inline action-menu">
+                                <li><a id="btnLike" href="" class="like"><span class="fa fa-thumbs-up"></span>
+                                        <span class="menulabel">Like</span></a></li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </article><br>
+            {% endfor %}
+        </div>
+        </div>
+                </div></div>
+
+
+
+
+
+    </div>
 {% endblock %}
+

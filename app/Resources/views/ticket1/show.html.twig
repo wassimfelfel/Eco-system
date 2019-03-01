@@ -1,0 +1,61 @@
+{% extends 'Admin.html.twig' %}
+
+{% block content %}
+
+    <div class="col-sm-12 text-center">
+        <h1 class="highlight">Votre Ticket</h1>
+
+    </div>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ticket.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ ticket.description }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{% if ticket.statut %}ouvert{% else %}fermé{% endif %}</td>
+
+            </tr>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ ticket.sujet }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if ticket.createdat %}{{ ticket.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Attachment</th>
+                <td><img src="{{ asset('images/tickets/'~ticket.imageName) }}" width="180px" alt=""></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a class="theme_button color1" href="{{ path('ticket_index_admin') }}">Retourner à la liste des tickets</a>
+
+        </li>
+    </ul>
+
+
+
+   {% include 'ticket/message.html.twig' %}
+
+
+    {% for message in messages %}
+        <tr>
+            <td>{{ message.user.username }}</td> <br>
+            <td>{{ message.text }}</td>
+            <td>{% if message.createdat %}{{ message.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+
+        <hr>
+    {% endfor %}
+{% endblock %}

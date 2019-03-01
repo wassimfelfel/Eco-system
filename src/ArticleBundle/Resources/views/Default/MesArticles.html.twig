@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <button><a href="{{ path('AfficherArticle') }}">Afficher la liste des Articles</a></button>
+    <button><a href="{{ path('AjouterArticle') }}">Ajouter un Article</a></button>
+    {% for entity in Article %}
+        {% if entity.user.id ==  user.id %}
+        <tr><td>
+                <h3><a href="Article/{{ entity.id }}">{{ entity.titre }}</a></h3>
+                <p>{{ entity.auteur }} - {{ entity.date|date("m/d/Y") }}</p>
+                <p>nombre de vues: {{ entity.vue }}</p>
+                <p>nombre de commentaires: {{ entity.nbcom }}</p>
+            </td>
+            <td>
+
+                    <button><a href="{{ path('SupprimerArticle',{'id':entity.id}) }}">Supprimer</a></button><br>
+                    <button><a href="{{ path('ModifierArticle',{'id':entity.id}) }}">Modifier</a></button>
+
+
+
+            </td></tr>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

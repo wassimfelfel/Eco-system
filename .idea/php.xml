@@ -47,6 +47,12 @@
       <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+<<<<<<< HEAD
+      <path value="$PROJECT_DIR$/vendor/jms/translation-bundle" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+=======
+      <path value="$PROJECT_DIR$/vendor/nomaya/social-bundle" />
+>>>>>>> 6aa1ea88242ac4719e4b40de5b78046c17138899
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />
