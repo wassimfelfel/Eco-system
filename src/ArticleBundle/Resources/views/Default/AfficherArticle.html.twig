@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <button><a href="{{ path('MesArticles') }}">Mes Articles</a></button>
-    <button><a href="{{ path('AjouterArticle') }}">Ajouter un Article</a></button>
+    <br>
+<div class="container center"><button><a href="{{ path('MesArticles') }}">Mes Articles</a></button>
+    <button><a href="{{ path('AjouterArticle') }}">Ajouter un Article</a></button></div>
 
 
             <div class="container">
@@ -11,7 +12,7 @@
         <div class="col-sm-12">
             <div class="isotope_container isotope row masonry-layout columns_margin_bottom_20">
         <div class="isotope-item col-lg-12 col-md-6 col-sm-12">
-            {% for entity in Article %}
+            {% for entity in paginateProducts %}
 
                 <article class="vertical-item content-padding with_background text-center rounded overflow-hidden">
                     <div class="item-media">
@@ -33,20 +34,12 @@
 								Nombre de commentaires : {{ entity.nbcom }}
 							</span><br>
                         {% if entity.user.id ==  user.id %}
-                            <a href="{{ path('SupprimerArticle',{'id':entity.id}) }}">Supprimer</a> / 
+                            <a href="{{ path('SupprimerArticle',{'id':entity.id}) }}">Supprimer</a> /
                             <a href="{{ path('ModifierArticle',{'id':entity.id}) }}">  Modifier</a><br>
 
                         {% endif %}
 
-                        <div>
 
-
-                            <ul class="list-inline action-menu">
-                                <li><a id="btnLike" href="" class="like"><span class="fa fa-thumbs-up"></span>
-                                        <span class="menulabel">Like</span></a></li>
-                            </ul>
-
-                        </div>
 
                     </div>
                 </article><br>
@@ -59,6 +52,10 @@
 
 
 
+    </div>
+
+    <div class="navigation">
+        {{ knp_pagination_render(paginateProducts) }}
     </div>
 {% endblock %}
 

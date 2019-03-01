@@ -6,26 +6,94 @@
 
 
 
-    <h2>{{ Article.titre }}</h2>
-    <p>{{ Article.contenu }}</p>
+<div class="container">
+    <div class="row">
 
-    <h3>Commentaires</h3>
-{% for Commentaires in Commentaires %}
-        <strong>{{ Commentaires.auteur }}</strong> {{ Commentaires.date|date('\\à H:i \\l\\e d-m-y') }} : {{ Commentaires.contenu }}<br>
-    {% if Commentaires.user.id ==  user.id %}
-    <a href="{{ path('SupprimerCommentaire',{'id':Commentaires.id}) }}">supprimer</a>
-    <a href="{{ path('ModifierCommentaire',{'id':Commentaires.id}) }}">Modifier</a><br>
+        <div class="col-sm-10 col-sm-push-1">
 
-    {% endif %}
-    {% else %}
-        No comments yet.
-    {% endfor %}
+            <article class="single-post vertical-item content-padding big-padding post with_background rounded">
 
-    <h3>Add a comment</h3>
+                <div class="item-content">
 
-    {{ form(form) }}
-    <br>
-    <h3><a href="../AfficherArticle">Retour a la liste des articles</a></h3>
+
+                    <header class="entry-header">
+
+                        <p class="content-justify item-meta">
+
+								<span class="entry-date highlightlinks">
+
+										<time class="entry-date" datetime="2017-03-13T08:50:40+00:00">
+											<strong>{{ Article.auteur }}</strong> {{ Article.date|date('\\à H:i \\l\\e d-m-y') }}
+										</time>
+
+								</span>
+                        </p>
+
+                        <h1 class="entry-title topmargin_0">
+                            {{ Article.titre }}
+                        </h1>
+
+                    </header>
+                    <!-- .entry-header -->
+
+                    <div class="entry-content">
+
+                        <p>{{ Article.contenu }}</p>
+                        <p><strong>{{ Article.auteur }}</strong></p>
+
+
+
+
+
+                    </div>
+                    <!-- .entry-content -->
+
+                </div>
+                <!-- .item-content -->
+
+            </article>
+            <h3>Commentaires :</h3>
+            {% for Commentaires in Commentaires %}
+
+            <div class="author-meta side-item content-padding with_background rounded">
+
+                <div class="row">
+
+
+
+                        <div class="col-md-8">
+                            <div class="item-content">
+                                <h5 class="text-uppercase poppins"><strong>{{ Commentaires.auteur }}</strong></h5>
+                                <p class="small-text highlight2 bottommargin_10">{{ Commentaires.date|date('\\à H:i \\l\\e d-m-y') }}</p>
+
+                                <p>{{ Commentaires.contenu }}</p>
+                                {% if Commentaires.user.id ==  user.id %}
+                                    <a href="{{ path('SupprimerCommentaire',{'id':Commentaires.id}) }}">supprimer</a> /
+                                    <a href="{{ path('ModifierCommentaire',{'id':Commentaires.id}) }}">Modifier</a><br>
+
+                                {% endif %}
+                                <!-- <div class="author-social"> -->
+
+
+                            </div>
+                        </div>
+
+
+
+                </div>
+            </div>
+            {% else %}
+                No comments yet.
+            {% endfor %}
+            <h3>Ajouter un commentaire :</h3>
+
+            {{ form(form) }}
+            <br>
+            <h3><a href="../AfficherArticle">Retour a la liste des articles</a></h3>
+
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}

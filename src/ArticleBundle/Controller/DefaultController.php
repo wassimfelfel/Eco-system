@@ -37,11 +37,21 @@ class DefaultController extends Controller
         return $this->render("@Article/Default/AjouterArticle.html.twig", array('form' => $form->createView()));
     }
 
-    public function AfficherArticleAction()
+    public function AfficherArticleAction(\Symfony\Component\HttpFoundation\Request $request)
     {
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
         $Article = $this->getDoctrine()->getRepository(Article::class)->findAll();
-        return $this->render("@Article/Default/AfficherArticle.html.twig", array('Article' => $Article,'user' =>$user));
+
+
+        $paginator  = $this->get('knp_paginator');
+        $paginateProducts = $paginator->paginate(
+            $Article,
+            $request->query->getInt('page', 1),
+            5
+        );
+        return $this->render('@Article/Default/AfficherArticle.html.twig', array(
+            'paginateProducts' => $paginateProducts,'Article' => $Article,'user' =>$user
+        ));
     }
 
     public function SupprimerArticleAction($id)
@@ -166,6 +176,7 @@ class DefaultController extends Controller
 
     public function AdminArticleAction($id, \Symfony\Component\HttpFoundation\Request $request)
     {
+        $this->Nbvues($id);
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
         $Article = $this->getDoctrine()->getRepository(Article::class)->find($id);
         $Commentaires = $this->getDoctrine()->getRepository(commentaire::class)->findBy(array('Article' => $Article));
